@@ -15,7 +15,7 @@ public class DecoratorPermanente extends DecoratorMedico {
 
     @Override
     public String getDescripcion() {
-        return super.getDescripcion() + ", permanente";
+        return super.getDescripcion() + ", Permanente.";
     }
 
     @Override

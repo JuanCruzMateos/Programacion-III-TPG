@@ -15,6 +15,7 @@ public class App {
         try {
             IMedico doctor = MedicoFactory.getMedico("pediatria", "magister", "temporario", "Juan", "Peres", 38443617);
             System.out.println(doctor);
+            System.out.println(doctor.getDescripcion());
             System.out.println(doctor.getSueldo());
         } catch (InformacionPersonalNoValidaException e) {
             System.out.println(e.getMessage());

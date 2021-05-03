@@ -15,6 +15,16 @@ public abstract class DecoratorMedico implements IMedico {
     }
 
     @Override
+    public Integer getMatricula() {
+        return this.encapsulado.getMatricula();
+    }
+
+    @Override
+    public void setMatricula(Integer matricula) {
+        this.encapsulado.setMatricula(matricula);
+    }
+
+    @Override
     public String toString() {
         return this.encapsulado.toString();
     }

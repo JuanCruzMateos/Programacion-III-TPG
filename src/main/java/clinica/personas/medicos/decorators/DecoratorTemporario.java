@@ -15,7 +15,7 @@ public class DecoratorTemporario extends DecoratorMedico {
 
     @Override
     public String getDescripcion() {
-        return super.getDescripcion() + ", temporario";
+        return super.getDescripcion() + ", Temporario.";
     }
 
     @Override

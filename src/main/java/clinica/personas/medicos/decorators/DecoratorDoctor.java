@@ -14,7 +14,7 @@ public class DecoratorDoctor extends DecoratorMedico {
 
     @Override
     public String getDescripcion() {
-        return super.getDescripcion() + ", doctor";
+        return super.getDescripcion() + ", Doctor";
     }
 
     @Override

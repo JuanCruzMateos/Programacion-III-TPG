@@ -15,10 +15,12 @@ public abstract class Medico extends Persona implements IMedico {
         super(nombre, apellido, dni);
     }
 
+    @Override
     public Integer getMatricula() {
         return matricula;
     }
 
+    @Override
     public void setMatricula(Integer matricula) {
         this.matricula = matricula;
     }
