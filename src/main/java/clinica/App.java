@@ -13,7 +13,7 @@ import clinica.personas.medicos.factory.MedicoFactory;
 public class App {
     public static void main(String[] args) {
         try {
-            IMedico doctor = MedicoFactory.getMedico("clinica", "doctor", "permanente", "Juan", "Peres", 38443617);
+            IMedico doctor = MedicoFactory.getMedico("pediatria", "magister", "temporario", "Juan", "Peres", 38443617);
             System.out.println(doctor);
             System.out.println(doctor.getSueldo());
         } catch (InformacionPersonalNoValidaException e) {

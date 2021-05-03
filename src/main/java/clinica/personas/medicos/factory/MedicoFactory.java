@@ -23,7 +23,7 @@ public class MedicoFactory {
         IMedico medicoConPosgrado = null;
         IMedico medicoConContratacion = null;
         boolean infoPersonalValida = nombre != null && apellido != null && dni != null &&
-                !nombre.equals("") && !apellido.equals("") && dni.intValue() > 0;
+                !nombre.equals("") && !apellido.equals("") && dni > 0;
 
         if (!infoPersonalValida)
             throw new InformacionPersonalNoValidaException("Los campos con los datos personales no son correctos.");
@@ -49,7 +49,7 @@ public class MedicoFactory {
             if (contratacion.equalsIgnoreCase("permanente"))
                 medicoConContratacion = new DecoratorPermanente(medicoConPosgrado);
             else if (contratacion.equalsIgnoreCase("temporario"))
-                medicoConContratacion = new DecoratorTemporario(medicoConContratacion);
+                medicoConContratacion = new DecoratorTemporario(medicoConPosgrado);
             else
                 throw new ContratacionNoValidaException("El tipo de contratacion no es valido.");
             // si no ocure ninguna exception devuelvo el medico creado con todos los campos
