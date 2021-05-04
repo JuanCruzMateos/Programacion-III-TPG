@@ -5,6 +5,7 @@ import clinica.excepciones.EspecialidadNoValidaException;
 import clinica.excepciones.InformacionPersonalNoValidaException;
 import clinica.excepciones.PosgradoNoValidoException;
 import clinica.personas.medicos.IMedico;
+import clinica.personas.medicos.especialidades.Clinico;
 import clinica.personas.medicos.factory.MedicoFactory;
 
 /**
@@ -26,5 +27,8 @@ public class App {
         } catch (PosgradoNoValidoException e) {
             System.out.println(e.getMessage());
         }
+
+        Clinico clinico = new Clinico("Carlos", "Perez", 25896314);
+        Clinico.setSueldoBasico(1);
     }
 }
