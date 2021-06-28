@@ -7,17 +7,20 @@ import sistema.facturacion.Internacion;
 import sistema.personas.medicos.IMedico;
 import sistema.personas.pacientes.Paciente;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
+import java.util.TreeSet;
 
 /**
  * Clase que modela el modulo de egreso de la clinica.<br>
  */
-public class ModuloEgreso {
-    private SortedArrayList<Factura> facturas = new SortedArrayList<>();
+public class ModuloEgreso implements Serializable {
+    //    private SortedArrayList<Factura> facturas = new SortedArrayList<>();
+    private TreeSet<Factura> facturas = new TreeSet<>();
 
     /**
      * Genera una factura para un paciente determinado y la almacena en un registro de facturas.<br>
@@ -84,5 +87,27 @@ public class ModuloEgreso {
         stringBuilder.append("Total: ").append(String.format("%.2f", total)).append("\n");
         stringBuilder.append("*************************************************************************\n");
         return stringBuilder.toString();
+    }
+
+    public TreeSet<Factura> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(TreeSet<Factura> facturas) {
+        this.facturas = facturas;
+    }
+
+    public String UltimaFacturaAgregada() {
+        int numeroFactura = this.facturas.size();
+        Iterator<Factura> it = this.facturas.iterator();
+        Factura fact = null;
+        boolean esta = false;
+
+        while (it.hasNext() && !esta) {
+            fact = it.next();
+            if (fact.getNroFactura() == numeroFactura)
+                esta = true;
+        }
+        return esta ? fact.toString() : null;
     }
 }

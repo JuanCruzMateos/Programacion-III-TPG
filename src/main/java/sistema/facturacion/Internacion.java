@@ -2,15 +2,21 @@ package sistema.facturacion;
 
 import sistema.habitaciones.Habitacion;
 
+import java.io.Serializable;
+
 /**
  * Clase que modela una internacion.<br>
  * Contiene informacion sobre la habitacion, la cantidad de dias internado, el costo de la habitacion y el subtotal.<br>
  */
-public class Internacion {
-    private Habitacion habitacion;
+public class Internacion implements Serializable {
+    private String habitacion;
     private int diasInternado;
     private double costoHabitacion;
     private double subtotal;
+
+    public Internacion() {
+
+    }
 
     /**
      * Constructor.<br>
@@ -21,7 +27,7 @@ public class Internacion {
      * @param diasInternado Cantidad de dias internado. Debe ser mayor a cero.<br>
      */
     public Internacion(Habitacion habitacion, int diasInternado) {
-        this.habitacion = habitacion;
+        this.habitacion = habitacion.toString();
         this.diasInternado = diasInternado;
         this.costoHabitacion = habitacion.getCostoHabitacion();
         this.subtotal = habitacion.getCostoInternacion(diasInternado);
@@ -32,7 +38,7 @@ public class Internacion {
      *
      * @return habitacion donde se interno al paciente.<br>
      */
-    public Habitacion getHabitacion() {
+    public String getHabitacion() {
         return habitacion;
     }
 
@@ -66,5 +72,29 @@ public class Internacion {
     @Override
     public String toString() {
         return String.format("%-20s %5s %.2f %10s %-10d %5s %.2f \n", this.habitacion, " ", this.costoHabitacion, " ", this.diasInternado, " ", this.subtotal);
+    }
+
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion.toString();
+    }
+
+    public int getDiasInternado() {
+        return diasInternado;
+    }
+
+    public void setDiasInternado(int diasInternado) {
+        this.diasInternado = diasInternado;
+    }
+
+    public void setCostoHabitacion(double costoHabitacion) {
+        this.costoHabitacion = costoHabitacion;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public void setHabitacion(String habitacion) {
+        this.habitacion = habitacion;
     }
 }

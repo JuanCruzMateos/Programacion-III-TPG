@@ -1,19 +1,19 @@
 package sistema.clinica;
 
+import sistema.ambulatorio.ModuloAtencionAmbulatoria;
 import sistema.atencion.ModuloAtencion;
 import sistema.egreso.ModuloEgreso;
-import sistema.excepciones.ContratacionNoValidaException;
-import sistema.excepciones.EspecialidadNoValidaException;
-import sistema.excepciones.InformacionPersonalNoValidaException;
-import sistema.excepciones.PosgradoNoValidoException;
+import sistema.excepciones.*;
 import sistema.facturacion.ConsultaMedica;
 import sistema.facturacion.Internacion;
 import sistema.ingreso.ModuloIngreso;
 import sistema.personas.medicos.IMedico;
 import sistema.personas.medicos.factory.MedicoFactory;
+import sistema.personas.pacientes.Asociado;
 import sistema.personas.pacientes.Paciente;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
@@ -29,11 +29,12 @@ public class Clinica {
     private String nombre;
     private String direccion;
     private String ciudad;
-    private int telefono;
+    private long telefono;
     private HashMap<Integer, IMedico> medicos = new HashMap<>();
     private ModuloIngreso moduloIngreso = new ModuloIngreso();
     private ModuloAtencion moduloAtencion = new ModuloAtencion();
     private ModuloEgreso moduloEgreso = new ModuloEgreso();
+    private ModuloAtencionAmbulatoria moduloAtencionAmbulatoria = new ModuloAtencionAmbulatoria();
 
     private Clinica() {
         // Constructor vacio
@@ -58,7 +59,7 @@ public class Clinica {
      * @param rangoEtario Rango etario de paciente.
      * @return referencia al paciente.
      */
-    public Paciente altaPaciente(String nombre, String apellido, String direccion, String ciudad, int telefono, int dni, String rangoEtario) {
+    public Paciente altaPaciente(String nombre, String apellido, String direccion, String ciudad, long telefono, int dni, String rangoEtario) {
         return this.moduloIngreso.altaPaciente(nombre, apellido, direccion, ciudad, telefono, dni, rangoEtario);
     }
 
@@ -106,7 +107,7 @@ public class Clinica {
      * @throws ContratacionNoValidaException
      */
     public void agregarMedico(String especialidad, String posgrado, String contratacion, String nombre, String apellido,
-                              String direccion, String ciudad, int telefono, int dni, int matricula)
+                              String direccion, String ciudad, long telefono, int dni, int matricula)
             throws InformacionPersonalNoValidaException, EspecialidadNoValidaException,
             PosgradoNoValidoException, ContratacionNoValidaException {
 
@@ -208,7 +209,7 @@ public class Clinica {
      *
      * @param telefono (int) que almacena el telefono de la clinica.<br>
      */
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 
@@ -237,5 +238,100 @@ public class Clinica {
                 "   - en patio: " + this.moduloIngreso.cantidadDePacientesEnPatio() + "\n" +
                 "   - en sala vip: " + ((this.moduloIngreso.salaVipOcupada()) ? 1 : 0) + "\n" +
                 "Pacientes en atencion: " + this.moduloAtencion.cantidadDePacientesEnAtencion() + "\n";
+    }
+
+    public void agregarAsociado(String nombre, String apellido, String direccion, long telefono, int dni) throws AsociadoExistenteException {
+        this.moduloAtencionAmbulatoria.agregarAsociado(nombre, apellido, direccion, telefono, dni);
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public long getTelefono() {
+        return telefono;
+    }
+
+    public HashMap<Integer, IMedico> getMedicos() {
+        return medicos;
+    }
+
+    public void setMedicos(HashMap<Integer, IMedico> medicos) {
+        this.medicos = medicos;
+    }
+
+    public ModuloIngreso getModuloIngreso() {
+        return moduloIngreso;
+    }
+
+    public void setModuloIngreso(ModuloIngreso moduloIngreso) {
+        this.moduloIngreso = moduloIngreso;
+    }
+
+    public ModuloAtencion getModuloAtencion() {
+        return moduloAtencion;
+    }
+
+    public void setModuloAtencion(ModuloAtencion moduloAtencion) {
+        this.moduloAtencion = moduloAtencion;
+    }
+
+    public ModuloEgreso getModuloEgreso() {
+        return moduloEgreso;
+    }
+
+    public void setModuloEgreso(ModuloEgreso moduloEgreso) {
+        this.moduloEgreso = moduloEgreso;
+    }
+
+    public ModuloAtencionAmbulatoria getModuloAtencionAmbulatoria() {
+        return moduloAtencionAmbulatoria;
+    }
+
+    public void setModuloAtencionAmbulatoria(ModuloAtencionAmbulatoria moduloAtencionAmbulatoria) {
+        this.moduloAtencionAmbulatoria = moduloAtencionAmbulatoria;
+    }
+
+    //AGREGO
+    public ArrayList<Paciente> getPacientesEnAtencion() {
+        return this.moduloAtencion.getPacientesEnAtencion();
+    }
+
+    public ArrayList<IMedico> getListaMedicos() {
+        Collection<IMedico> values = medicos.values();
+        return new ArrayList<>(values);
+    }
+
+    public ArrayList<Asociado> getListaAsociados() {
+        Collection<Asociado> values = this.moduloAtencionAmbulatoria.getRegistroAsociados().values();
+        return new ArrayList<>(values);
+    }
+
+    //FALTA LANZAR EXCEPCION
+    public void AgregarAsociado(String nombre, String apellido, String direccion, long long1, int dni) throws AsociadoExistenteException {
+    	if (dni>0 && long1>0 && nombre!=null && apellido!=null && direccion!=null) {
+    		this.moduloAtencionAmbulatoria.agregarAsociado(nombre, apellido, direccion, long1, dni);
+    	}
+    }
+
+    public void EliminarAsociado(Asociado as) throws AsociadoInexistenteException {
+        this.moduloAtencionAmbulatoria.eliminarAsociado(as);
+    }
+
+    //FALTA LANZAR EXCEPCION
+    public Asociado DevolverAsociado(int dni) { 
+        return this.moduloAtencionAmbulatoria.getRegistroAsociados().get(dni);
+    }
+
+    public String getDetalleUltimaFactura() {
+        return this.moduloEgreso.UltimaFacturaAgregada();
     }
 }

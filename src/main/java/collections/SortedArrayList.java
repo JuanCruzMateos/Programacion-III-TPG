@@ -1,12 +1,13 @@
 package collections;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * Clase que especializa ArrayList en un arreglo cuyas inserciones son ordenadas.<br>
  */
-public class SortedArrayList<E extends Comparable<E>> extends ArrayList<E> {
+public class SortedArrayList<E extends Comparable<E>> extends ArrayList<E> implements Serializable {
     private final ArrayList<E> arr = new ArrayList<>();
 
     public SortedArrayList() {

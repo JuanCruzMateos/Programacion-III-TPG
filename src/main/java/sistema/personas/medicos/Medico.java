@@ -9,6 +9,10 @@ public abstract class Medico extends Persona implements IMedico {
     protected static double sueldoBasico = 100.0;
     protected int matricula;
 
+    public Medico() {
+
+    }
+
     /**
      * Constructor. <br>
      * <b>Pre: </b> nombre, apellido, direccion, ciudad distintos de null; telenofo y dni enteros positivos.<br>
@@ -22,7 +26,7 @@ public abstract class Medico extends Persona implements IMedico {
      * @param dni       DNI del medico. Numero entero positivo.<br>
      * @param matricula Numero de matricula del medico.<br>
      */
-    public Medico(String nombre, String apellido, String direccion, String ciudad, int telefono, int dni, int matricula) {
+    public Medico(String nombre, String apellido, String direccion, String ciudad, Long telefono, int dni, int matricula) {
         super(nombre, apellido, direccion, ciudad, telefono, dni);
         this.matricula = matricula;
     }
@@ -33,7 +37,7 @@ public abstract class Medico extends Persona implements IMedico {
     }
 
     @Override
-    public void setMatricula(Integer matricula) {
+    public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
 

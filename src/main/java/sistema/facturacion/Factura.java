@@ -2,24 +2,30 @@ package sistema.facturacion;
 
 import sistema.personas.pacientes.Paciente;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * Clase que modela una factura de la clinica.<br>
  * Cada factura contiene informacion sobre la fecha de facturacion, el paciente a quien se destina la factura, un numero de factura,
  * y listas de consultas medicas e internaciones.<br>
  */
-public class Factura implements Comparable<Factura> {
+public class Factura implements Comparable<Factura>, Serializable {
     private static int sigNroFactura = 0;
     private int nroFactura;
     private GregorianCalendar fecha;
     private Paciente paciente;
     private ArrayList<ConsultaMedica> consultasConMedicos;
     private ArrayList<Internacion> internaciones;
+
+    public Factura() {
+
+    }
 
     /**
      * Constructor.<br>
@@ -126,5 +132,50 @@ public class Factura implements Comparable<Factura> {
     @Override
     public int compareTo(Factura o) {
         return this.fecha.compareTo(o.fecha);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Factura factura = (Factura) o;
+        return nroFactura == factura.nroFactura;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nroFactura);
+    }
+
+    public static int getSigNroFactura() {
+        return sigNroFactura;
+    }
+
+    public static void setSigNroFactura(int sigNroFactura) {
+        Factura.sigNroFactura = sigNroFactura;
+    }
+
+    public void setNroFactura(int nroFactura) {
+        this.nroFactura = nroFactura;
+    }
+
+    public void setFecha(GregorianCalendar fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public void setConsultasConMedicos(ArrayList<ConsultaMedica> consultasConMedicos) {
+        this.consultasConMedicos = consultasConMedicos;
+    }
+
+    public ArrayList<Internacion> getInternaciones() {
+        return internaciones;
+    }
+
+    public void setInternaciones(ArrayList<Internacion> internaciones) {
+        this.internaciones = internaciones;
     }
 }

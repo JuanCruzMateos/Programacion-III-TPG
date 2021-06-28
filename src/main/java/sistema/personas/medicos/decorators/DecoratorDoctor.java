@@ -8,6 +8,13 @@ import sistema.personas.medicos.IMedico;
 public class DecoratorDoctor extends DecoratorMedico {
     private static double aumentoDoctor = 0.1;
 
+    /**
+     * Para persistencia XML
+     */
+    public DecoratorDoctor() {
+
+    }
+
     public DecoratorDoctor(IMedico encapsulado) {
         super(encapsulado);
     }
@@ -37,6 +44,10 @@ public class DecoratorDoctor extends DecoratorMedico {
      */
     public static void setAumentoDoctor(double aumentoDoctor) {
         DecoratorDoctor.aumentoDoctor = aumentoDoctor;
+    }
+
+    public static double getAumentoDoctor() {
+        return aumentoDoctor;
     }
 
     @Override

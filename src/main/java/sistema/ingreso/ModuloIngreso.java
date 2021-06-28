@@ -3,6 +3,7 @@ package sistema.ingreso;
 import sistema.personas.pacientes.Paciente;
 import sistema.personas.pacientes.PacienteFactory;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -10,11 +11,11 @@ import java.util.*;
  * Se ocupa se asignar numero de orden al ingresar un paciente en la espera ( vip o patio).<br>
  * Si ya esta registrado, alta solo devuelve la ref y al ingresar lo pisa con una nuevo valor.<br>
  */
-public class ModuloIngreso {
+public class ModuloIngreso implements Serializable {
     private static int nroOrden = 0;
-    private HashMap<Integer, Paciente> registroDePacientes = new HashMap<Integer, Paciente>();
-    private Queue<Paciente> listaDeEspera = new LinkedList<Paciente>();
-    private ArrayList<Paciente> listaPacientesEnPatio = new ArrayList<Paciente>();
+    private HashMap<Integer, Paciente> registroDePacientes = new HashMap<>();
+    private Queue<Paciente> listaDeEspera = new LinkedList<>();
+    private ArrayList<Paciente> listaPacientesEnPatio = new ArrayList<>();
     private Paciente salaVip;
 
     /**
@@ -33,7 +34,7 @@ public class ModuloIngreso {
      * @param rangoEtario Rango etario de paciente. Debe ser distinto de null.<br>
      * @return referencia al paciente.
      */
-    public Paciente altaPaciente(String nombre, String apellido, String direccion, String ciudad, int telefono, int dni, String rangoEtario) {
+    public Paciente altaPaciente(String nombre, String apellido, String direccion, String ciudad, Long telefono, int dni, String rangoEtario) {
         Paciente paciente = null;
 
         if (this.registroDePacientes.containsKey(dni)) {
@@ -114,5 +115,45 @@ public class ModuloIngreso {
      */
     public boolean salaVipOcupada() {
         return this.salaVip != null;
+    }
+
+    public static int getNroOrden() {
+        return nroOrden;
+    }
+
+    public static void setNroOrden(int nroOrden) {
+        ModuloIngreso.nroOrden = nroOrden;
+    }
+
+    public HashMap<Integer, Paciente> getRegistroDePacientes() {
+        return registroDePacientes;
+    }
+
+    public void setRegistroDePacientes(HashMap<Integer, Paciente> registroDePacientes) {
+        this.registroDePacientes = registroDePacientes;
+    }
+
+    public Queue<Paciente> getListaDeEspera() {
+        return listaDeEspera;
+    }
+
+    public void setListaDeEspera(Queue<Paciente> listaDeEspera) {
+        this.listaDeEspera = listaDeEspera;
+    }
+
+    public ArrayList<Paciente> getListaPacientesEnPatio() {
+        return listaPacientesEnPatio;
+    }
+
+    public void setListaPacientesEnPatio(ArrayList<Paciente> listaPacientesEnPatio) {
+        this.listaPacientesEnPatio = listaPacientesEnPatio;
+    }
+
+    public Paciente getSalaVip() {
+        return salaVip;
+    }
+
+    public void setSalaVip(Paciente salaVip) {
+        this.salaVip = salaVip;
     }
 }

@@ -8,6 +8,10 @@ import sistema.personas.medicos.IMedico;
 public class DecoratorMagister extends DecoratorMedico {
     private static double aumentoMagister = 0.05;
 
+    public DecoratorMagister() {
+
+    }
+
     public DecoratorMagister(IMedico encapsulado) {
         super(encapsulado);
     }
@@ -28,6 +32,10 @@ public class DecoratorMagister extends DecoratorMedico {
      */
     public static void setAumentoMagister(double aumentoMagister) {
         DecoratorMagister.aumentoMagister = aumentoMagister;
+    }
+
+    public static double getAumentoMagister() {
+        return aumentoMagister;
     }
 
     /**

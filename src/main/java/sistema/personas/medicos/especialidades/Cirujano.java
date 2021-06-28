@@ -8,6 +8,10 @@ import sistema.personas.medicos.Medico;
 public class Cirujano extends Medico {
     private static double aumentoCirujano = 0.1;
 
+    public Cirujano() {
+
+    }
+
     /**
      * Constructor. <br>
      * <b>Pre: </b> nombre, apellido, direccion, ciudad distintos de null; telenofo y dni enteros positivos.<br>
@@ -21,7 +25,7 @@ public class Cirujano extends Medico {
      * @param dni       DNI del medico. Numero entero positivo.<br>
      * @param matricula Numero de matricula del medico.<br>
      */
-    public Cirujano(String nombre, String apellido, String direccion, String ciudad, int telefono, int dni, int matricula) {
+    public Cirujano(String nombre, String apellido, String direccion, String ciudad, Long telefono, int dni, int matricula) {
         super(nombre, apellido, direccion, ciudad, telefono, dni, matricula);
     }
 
@@ -46,6 +50,10 @@ public class Cirujano extends Medico {
      */
     public static void setAumentoCirujano(double aumentoCirujano) {
         Cirujano.aumentoCirujano = aumentoCirujano;
+    }
+
+    public static double getAumentoCirujano() {
+        return aumentoCirujano;
     }
 
     @Override

@@ -2,15 +2,21 @@ package sistema.facturacion;
 
 import sistema.personas.medicos.IMedico;
 
+import java.io.Serializable;
+
 /**
  * Clase que modela una consulta medica.<br>
  * Tiene informacion del medico, la cantidad de consultas realizadas y el valor de la consulta.<br>
  */
-public class ConsultaMedica {
+public class ConsultaMedica implements Serializable {
     private static double incremento = 0.2;
     private IMedico medico;
     private int cantidadConsultas;
     private double valorConsulta;
+
+    public ConsultaMedica() {
+
+    }
 
     /**
      * Constructor de la clase.<br>
@@ -47,5 +53,33 @@ public class ConsultaMedica {
     @Override
     public String toString() {
         return String.format("Dr.%-23s %.2f %9s %-10d %5s %.2f \n", this.medico.getApellido(), this.valorConsulta, " ", this.cantidadConsultas, " ", this.getSubtotal());
+    }
+
+    public static double getIncremento() {
+        return incremento;
+    }
+
+    public static void setIncremento(double incremento) {
+        ConsultaMedica.incremento = incremento;
+    }
+
+    public void setMedico(IMedico medico) {
+        this.medico = medico;
+    }
+
+    public int getCantidadConsultas() {
+        return cantidadConsultas;
+    }
+
+    public void setCantidadConsultas(int cantidadConsultas) {
+        this.cantidadConsultas = cantidadConsultas;
+    }
+
+    public double getValorConsulta() {
+        return valorConsulta;
+    }
+
+    public void setValorConsulta(double valorConsulta) {
+        this.valorConsulta = valorConsulta;
     }
 }

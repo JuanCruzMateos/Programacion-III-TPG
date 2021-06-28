@@ -19,7 +19,7 @@ import sistema.personas.medicos.especialidades.Pediatra;
  */
 public class MedicoFactory {
     public static IMedico getMedico(String especialidad, String posgrado, String contratacion, String nombre,
-                                    String apellido, String direccion, String ciudad, int telefono, int dni, int matricula)
+                                    String apellido, String direccion, String ciudad, Long telefono, int dni, int matricula)
             throws InformacionPersonalNoValidaException, EspecialidadNoValidaException,
             PosgradoNoValidoException, ContratacionNoValidaException {
         IMedico medicoBasico = null;

@@ -59,4 +59,8 @@ public abstract class Habitacion {
     public static void setCostoAsignacion(double costoAsignacion) {
         Habitacion.costoAsignacion = costoAsignacion;
     }
+
+    public static double getCostoAsignacion() {
+        return costoAsignacion;
+    }
 }

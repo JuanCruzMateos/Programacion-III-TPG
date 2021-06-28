@@ -7,10 +7,10 @@ package sistema.personas.pacientes;
  * <b>Post:</b> Retorna un paciente con historia clinica o null si el rango etareo no corresponde a una opcion valida (no lanza excepciones).<br>
  */
 public class PacienteFactory {
-    public static int nroHistoriaClinica = 0;
+    private static int nroHistoriaClinica = 0;
 
     // TODO podria lanzar alguna excepcion si el rango etareo no corresponde - No implementado - Agregamos como pre-requisito
-    public static Paciente getPaciente(String nombre, String apellido, String direccion, String ciudad,int telefono, int dni, String rangoEtario) {
+    public static Paciente getPaciente(String nombre, String apellido, String direccion, String ciudad, long telefono, int dni, String rangoEtario) {
         Paciente respuesta = null;
         PacienteFactory.nroHistoriaClinica++;
 
@@ -21,5 +21,13 @@ public class PacienteFactory {
         else if (rangoEtario.equalsIgnoreCase("Nino"))
             respuesta = new PacienteNino(nombre, apellido, direccion, ciudad,telefono, dni, nroHistoriaClinica);
         return respuesta;
+    }
+
+    public static int getNroHistoriaClinica() {
+        return nroHistoriaClinica;
+    }
+
+    public static void setNroHistoriaClinica(int nroHistoriaClinica) {
+        PacienteFactory.nroHistoriaClinica = nroHistoriaClinica;
     }
 }

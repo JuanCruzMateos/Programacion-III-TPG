@@ -10,6 +10,27 @@ public abstract class Paciente extends Persona {
     protected int nroOrden;
 
     /**
+     * Para persistencia XML
+     */
+    public Paciente() {
+
+    }
+
+    /**
+     * Constructor. <br>
+     * <b>Pre: </b> nombre, apellido, direccion distintos de null; telenofo y dni enteros positivos.<br>
+     *
+     * @param nombre    Nombre del paciente. Debe ser distinto de null.<br>
+     * @param apellido  Apellido del paciente. Debe ser distinto de null.<br>
+     * @param direccion Direccion del paciente. Debe ser distinto de null.<br>
+     * @param telefono  Telefono de contacto del paciente. Numero entero positivo.<br>
+     * @param dni       DNI del paciente. Numero entero positivo.<br>
+     */
+    public Paciente(String nombre, String apellido, String direccion, long telefono, int dni) {
+        super(nombre, apellido, direccion, telefono, dni);
+    }
+
+    /**
      * Constructor. <br>
      * <b>Pre: </b> nombre, apellido, direccion, ciudad distintos de null; telenofo y dni enteros positivos.<br>
      *
@@ -21,7 +42,7 @@ public abstract class Paciente extends Persona {
      * @param dni                DNI del paciente. Numero entero positivo.<br>
      * @param nroHistoriaClinica Numero de historia clinica del paciente.<br>
      */
-    public Paciente(String nombre, String apellido, String direccion, String ciudad, int telefono, int dni, int nroHistoriaClinica) {
+    public Paciente(String nombre, String apellido, String direccion, String ciudad, long telefono, int dni, int nroHistoriaClinica) {
         super(nombre, apellido, direccion, ciudad, telefono, dni);
         this.nroHistoriaClinica = nroHistoriaClinica;
     }
@@ -73,6 +94,10 @@ public abstract class Paciente extends Persona {
      */
     public int getNroHistoriaClinica() {
         return nroHistoriaClinica;
+    }
+
+    public void setNroHistoriaClinica(int nroHistoriaClinica) {
+        this.nroHistoriaClinica = nroHistoriaClinica;
     }
 
     @Override

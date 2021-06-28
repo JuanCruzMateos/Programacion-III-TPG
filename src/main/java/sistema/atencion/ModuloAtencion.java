@@ -2,14 +2,15 @@ package sistema.atencion;
 
 import sistema.personas.pacientes.Paciente;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * Clase que modela el modulo de atencion de la clinica.<br>
  */
-public class ModuloAtencion {
-    private ArrayList<Paciente> pacientesEnAtencion = new ArrayList<Paciente>();
+public class ModuloAtencion implements Serializable {
+    private ArrayList<Paciente> pacientesEnAtencion = new ArrayList<>();
 
     /**
      * Agrega al paciente a la lista de pacientes en atencion.<br>
@@ -53,5 +54,13 @@ public class ModuloAtencion {
      */
     public int cantidadDePacientesEnAtencion() {
         return this.pacientesEnAtencion.size();
+    }
+
+    public ArrayList<Paciente> getPacientesEnAtencion() {
+        return pacientesEnAtencion;
+    }
+
+    public void setPacientesEnAtencion(ArrayList<Paciente> pacientesEnAtencion) {
+        this.pacientesEnAtencion = pacientesEnAtencion;
     }
 }

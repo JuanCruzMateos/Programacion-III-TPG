@@ -1,20 +1,65 @@
 package sistema.gui;
 
+import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
+import java.util.Iterator;
+
+import javax.swing.JTextPane;
+
+import sistema.habitaciones.Habitacion;
+import sistema.personas.medicos.IMedico;
+import sistema.personas.medicos.Medico;
+import sistema.personas.pacientes.Asociado;
 import sistema.personas.pacientes.Paciente;
 
 public interface IVista {
-    String getNombre();
-    String getApellido();
-    int getDni();
-    int getTelefono();
-    String getDomicilio();
-    String getCiudad();
 
-    String getEspecialidad();
-    String getPosgrado();
-    String getContratacion();
+    //Facturacion
+    Paciente getPacienteFacturacion();
 
-    String getRangoEtareo();
+    IMedico getMedicoFacturacion();
 
-    Paciente getSelectedValue();
+    int getCantidadConsultasFacturacion();
+
+    Habitacion getHabitacionFacturacion();
+
+    int getCantidadDiasInternacionFacturacion();
+
+    public void actualizarListaPacientesFacturacion(Iterator<Paciente> iterator);
+
+    public void actualizarComboMedicosFacturacion(Iterator<IMedico> iterator);
+
+    public void actualizarComboHabitacionesFacturacion(Iterator<Habitacion> iterator);
+
+    public void MostrarFactura(String detalle);
+
+    //ALTA/BAJA
+    public void actualizarListaAsociados(Iterator<Asociado> iterator);
+
+    String getNombreAsociado();
+
+    String getApellidoAsociado();
+
+    int getDNIAsociado();
+
+    String getDireccionAsociado();
+
+    Long getTelefonoAsociado();
+
+    int getDNIAsociadoAEliminar();
+
+    //SIMULACION
+    Asociado getAsociadoSimulacion();
+
+    int getCantidadSolicitudesAsociado();
+
+    int getCantidadSolicitudesOperario();
+
+    JTextPane getTextPane();
+
+    void addActionListener(ActionListener actionListener);
+
+    void addWindowListener(WindowListener windowListener);
+
+    void habilitarBotonesFactura(boolean habilitar);
 }

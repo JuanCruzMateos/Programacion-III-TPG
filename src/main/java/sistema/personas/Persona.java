@@ -1,15 +1,42 @@
 package sistema.personas;
 
+import java.io.Serializable;
+
 /**
  * Clase que modela a una persona con su informacion de contacto basica.<br>
  */
-public abstract class Persona {
+public abstract class Persona implements Serializable {
     protected String nombre;
     protected String apellido;
     protected String direccion;
     protected String ciudad;
-    protected int telefono;
+    protected Long telefono;
     protected int dni;
+
+    /**
+     * Para persistencia XML
+     */
+    public Persona() {
+
+    }
+
+    /**
+     * Constructor. <br>
+     * <b>Pre: </b> nombre, apellido, direccion distintos de null; telenofo y dni enteros positivos.<br>
+     *
+     * @param nombre    Nombre de la persona. Debe ser distinto de null.<br>
+     * @param apellido  Apellido de la persona. Debe ser distinto de null.<br>
+     * @param direccion Direccion de la persona. Debe ser distinto de null.<br>
+     * @param telefono  Telefono de contacto de la persona. Numero entero positivo.<br>
+     * @param dni       DNI de la persona. Numero entero positivo.<br>
+     */
+    public Persona(String nombre, String apellido, String direccion, Long telefono, int dni) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.dni = dni;
+    }
 
     /**
      * Constructor. <br>
@@ -22,7 +49,7 @@ public abstract class Persona {
      * @param telefono  Telefono de contacto de la persona. Numero entero positivo.<br>
      * @param dni       DNI de la persona. Numero entero positivo.<br>
      */
-    public Persona(String nombre, String apellido, String direccion, String ciudad, int telefono, int dni) {
+    public Persona(String nombre, String apellido, String direccion, String ciudad, Long telefono, int dni) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
@@ -32,39 +59,51 @@ public abstract class Persona {
     }
 
     public String getNombre() {
-        return this.nombre;
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellido() {
-        return this.apellido;
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getDireccion() {
-        return this.direccion;
-    }
-
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public int getDni() {
-        return this.dni;
-    }
-
-    public int getTelefono() {
-        return this.telefono;
+        return direccion;
     }
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
+    public String getCiudad() {
+        return ciudad;
+    }
+
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
 
-    public void setTelefono(int telefono) {
+    public Long getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
+    }
+
+    public int getDni() {
+        return dni;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
     }
 
     @Override
