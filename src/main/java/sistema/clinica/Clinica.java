@@ -322,8 +322,8 @@ public class Clinica {
     	}
     }
 
-    public void EliminarAsociado(Asociado as) throws AsociadoInexistenteException {
-        this.moduloAtencionAmbulatoria.eliminarAsociado(as);
+    public void EliminarAsociado(int dni) throws AsociadoInexistenteException {
+        this.moduloAtencionAmbulatoria.eliminarAsociado(dni);
     }
 
     //FALTA LANZAR EXCEPCION

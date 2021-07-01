@@ -19,21 +19,25 @@ public class SortedArrayList<E extends Comparable<E>> extends ArrayList<E> imple
      */
     @Override
     public boolean add(E e) {
-        // Obs: en que caso podria fallar.
         int i = 0;
 
         if (this.arr.isEmpty()) {
-            this.arr.add(e);
+            return this.arr.add(e);
         } else {
             while (i < this.arr.size() && this.arr.get(i).compareTo(e) < 0) {
                 i += 1;
             }
             if (i == this.arr.size())
-                this.arr.add(e);
-            else
-                this.arr.add(i, e);
+                return this.arr.add(e);
+            else {
+                try {
+                    this.arr.add(i, e);
+                    return true;
+                } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+                    return false;
+                }
+            }
         }
-        return true;
     }
 
     @Override

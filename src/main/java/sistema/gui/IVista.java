@@ -8,12 +8,10 @@ import javax.swing.JTextPane;
 
 import sistema.habitaciones.Habitacion;
 import sistema.personas.medicos.IMedico;
-import sistema.personas.medicos.Medico;
 import sistema.personas.pacientes.Asociado;
 import sistema.personas.pacientes.Paciente;
 
 public interface IVista {
-
     //Facturacion
     Paciente getPacienteFacturacion();
 
@@ -25,16 +23,16 @@ public interface IVista {
 
     int getCantidadDiasInternacionFacturacion();
 
-    public void actualizarListaPacientesFacturacion(Iterator<Paciente> iterator);
+    void actualizarListaPacientesFacturacion(Iterator<Paciente> iterator);
 
-    public void actualizarComboMedicosFacturacion(Iterator<IMedico> iterator);
+    void actualizarComboMedicosFacturacion(Iterator<IMedico> iterator);
 
-    public void actualizarComboHabitacionesFacturacion(Iterator<Habitacion> iterator);
+    void actualizarComboHabitacionesFacturacion(Iterator<Habitacion> iterator);
 
-    public void MostrarFactura(String detalle);
+    void MostrarFactura(String detalle);
 
     //ALTA/BAJA
-    public void actualizarListaAsociados(Iterator<Asociado> iterator);
+    void actualizarListaAsociados(Iterator<Asociado> iterator);
 
     String getNombreAsociado();
 

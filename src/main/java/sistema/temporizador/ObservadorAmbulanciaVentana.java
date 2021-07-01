@@ -22,9 +22,8 @@ public class ObservadorAmbulanciaVentana implements Observer {
     public void update(Observable o, Object arg) {
         if (o != this.ambulancia)
             throw new IllegalArgumentException();
-        else {
+        else
         	text.setText(text.getText() + "\n" + arg);
         	text.setText(text.getText() + "\n-------------------------------------------------------------------");
-        }
     }
 }

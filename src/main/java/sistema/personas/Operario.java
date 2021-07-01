@@ -25,7 +25,7 @@ public class Operario extends Persona implements Runnable {
 
         for (i = 0; i < this.cantSolicitudes; i++) {
             Ambulancia.getInstance().solicitudReparacion();
-            Util.esperar(2);
+            Util.esperarRand(10);
         }
     }
 }

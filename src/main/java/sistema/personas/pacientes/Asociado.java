@@ -29,7 +29,7 @@ public class Asociado extends Paciente implements Runnable {
                 Ambulancia.getInstance().solicitudAtencionDomicilio(this);
             else
                 Ambulancia.getInstance().solicitudTrasladoClinica(this);
-            Util.esperar(0);
+            Util.esperarRand(10);
         }
     }
 

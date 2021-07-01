@@ -23,11 +23,11 @@ public class ModuloAtencionAmbulatoria implements Serializable {
         this.registroAsociados.put(dni, new Asociado(nombre, apellido, direccion, long1, dni));
     }
 
-    public void eliminarAsociado(Asociado asociado) throws AsociadoInexistenteException {
-        if (!this.registroAsociados.containsKey(asociado.getDni()))
-            throw new AsociadoInexistenteException("Asociado Inexistente", asociado);
+    public void eliminarAsociado(int dni) throws AsociadoInexistenteException {
+        if (!this.registroAsociados.containsKey(dni))
+            throw new AsociadoInexistenteException("Asociado Inexistente", dni);
         else
-            this.registroAsociados.remove(asociado.getDni());
+            this.registroAsociados.remove(dni);
     }
 
     public HashMap<Integer, Asociado> getRegistroAsociados() {

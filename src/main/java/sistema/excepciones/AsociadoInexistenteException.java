@@ -1,16 +1,14 @@
 package sistema.excepciones;
 
-import sistema.personas.pacientes.Asociado;
-
 public class AsociadoInexistenteException extends Exception {
-    private Asociado asociadoInexistente;
+    private int dniInexistente;
     
-    public AsociadoInexistenteException(String message, Asociado asociadoInexistente) {
+    public AsociadoInexistenteException(String message, int dniInexistente) {
         super(message);
-        this.asociadoInexistente = asociadoInexistente;
+        this.dniInexistente = dniInexistente;
     }
 
-    public Asociado getAsociadoInexistente() {
-        return asociadoInexistente;
+    public int getDniInexistente() {
+        return this.dniInexistente;
     }
 }

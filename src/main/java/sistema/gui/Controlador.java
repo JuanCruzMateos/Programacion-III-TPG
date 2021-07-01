@@ -173,14 +173,14 @@ public class Controlador implements ActionListener, WindowListener {
 
     private void EliminarAsociado() {
         //System.out.println("Eliminar Asociado");
-        Asociado AsociadoAElim = this.clinica.DevolverAsociado(this.ventana.getDNIAsociadoAEliminar());
-        if (AsociadoAElim != null) {
-            try {
-                this.clinica.EliminarAsociado(AsociadoAElim);
-            } catch (AsociadoInexistenteException e) {
-                JOptionPane.showMessageDialog(null, "Asociado no existe");
-            }
+//        Asociado AsociadoAElim = this.clinica.DevolverAsociado(this.ventana.getDNIAsociadoAEliminar());
+//        if (AsociadoAElim != null) {
+        try {
+            this.clinica.EliminarAsociado(this.ventana.getDNIAsociadoAEliminar());
+        } catch (AsociadoInexistenteException e) {
+            JOptionPane.showMessageDialog(null, "Asociado no existe");
         }
+//        }
         this.ventana.actualizarListaAsociados(this.clinica.getListaAsociados().iterator());
         AccesoDatos.persistirClinica();
     }
